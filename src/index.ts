@@ -1,9 +1,10 @@
-const express = require("express");
-const connectDB = require("./db/connect");
-const cookieParser = require("cookie-parser");
-const compression = require("compression");
-const cors = require("cors");
-require("dotenv").config();
+import express from "express";
+import connectDB from "./db/connect.ts";
+import cookieParser from "cookie-parser";
+import compression from "compression";
+import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
