@@ -18,8 +18,6 @@ export default mongoose.model("User", UserSchema);
 // export const getUserBySessionToken = (token: string) =>
 //   UserModel.findOne({ "authentication.sessionToken": token });
 // export const getUserById = (id: string) => UserModel.findOne({ id });
-// export const createUser = (values: Record<string, any>) =>
-//   UserModel.create(values).then((user) => user.toObject());
 // export const deleteUserById = (id: string) =>
 //   UserModel.findOneAndDelete({ id });
 // export const updateUserById = (id: string, values: Record<string, any>) =>

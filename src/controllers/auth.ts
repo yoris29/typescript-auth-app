@@ -1,10 +1,13 @@
 import express from "express";
 import { Request, Response } from "express";
 import User from "../models/Users";
-import { random } from "../helpers/auth";
+import { random, auth } from "../helpers/auth";
 
-export const signup = async (req: Request, res: Response) => {
+export const signup = async (req: Request, res: Response): Promise<any> => {
   const { email, password, username } = req.body;
+  email.toString();
+  password.toString();
+  username.toString();
 
   if (!email || !password || !username) {
     return res
@@ -19,8 +22,14 @@ export const signup = async (req: Request, res: Response) => {
         msg: "A user is already linked with this email address",
       });
     }
-    // const salt = random
-    return res.status(200).json({ err: true, msg: "Internal server error" });
+    const salt = random();
+    const user = await User.create({
+      email,
+      username,
+      authentication: { salt, password: auth(salt, password) },
+    }).then((user) => user.toObject());
+
+    return res.status(200).json({ err: false, user });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ err: true, msg: "Internal server error" });
